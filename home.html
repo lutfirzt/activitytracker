@@ -49,7 +49,7 @@
 
     .hero h1 {
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 500;
       color: white;
       margin: 0;
       animation: fadeIn 1s ease forwards;
@@ -57,13 +57,13 @@
 
     .greeting-fixed {
       position: absolute;
-      top: var(--greeting-top, 7rem);
+      top: var(--greeting-top, 5rem);
       left: 50%;
       transform: translateX(-50%);
       font-size: 2rem;
       color: white;
       opacity: 0;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.3s ease;
     }
 
     .greeting-fixed.show {
@@ -83,46 +83,46 @@
 
     .content {
       background-color: #121212;
-      border-top-left-radius: 40px;
-      border-top-right-radius: 40px;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
       position: relative;
       z-index: 2;
       padding: 2rem 1.5rem;
       margin-top: -30vh;
-      min-height: 70vh;
+      min-height: 75vh;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     .divider {
-      width: 60px;
-      height: 3px;
+      width: 200px;
+      height: 5px;
       background-color: #ccc;
-      margin: 1rem 0 1.5rem;
-      border-radius: 2px;
+      margin: 0rem 0 0rem;
+      border-radius: 5px;
     }
 
     .card-list {
       max-height: 80vh;
       overflow-y: auto;
-      width: 100%;
-      padding-right: 0.5rem;
+      width: 80%;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 2rem;
     }
 
     .card {
       background-color: #1f1f2f;
       border-radius: 16px;
-      padding: 1rem 1.2rem;
+      padding: 1.5rem 2rem;
       display: flex;
       align-items: center;
       gap: 1rem;
       cursor: pointer;
-      transition: transform 0.2s ease, opacity 0.3s ease;
-      box-shadow: 0 4px 10px rgba(187, 134, 252, 0.2);
+      transition: transform 0.5s ease, opacity 0.1s ease;
+      box-shadow: 0 4px 5px rgba(187, 134, 252, 0.2);
       opacity: 0;
       transform: translateY(20px);
     }
@@ -133,7 +133,7 @@
     }
 
     .card:hover {
-      transform: scale(1.03);
+      transform: scale(1.1);
     }
 
     .badge {
