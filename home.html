@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beranda - Lutfirzt Tools</title>
+  <title>Lutfirzt Tools</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -17,52 +17,90 @@
       margin: 0;
       padding: 0;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
+    }
+
+    .container {
+      background-color: #1f1f2f;
+      padding: 2.5rem;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    h1 {
       text-align: center;
+      color: #bb86fc;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .card {
+      background-color: #140c2c;
+      border-radius: 12px;
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px rgba(187, 134, 252, 0.4);
+    }
+
+    .badge {
+      background-color: #bb86fc;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: bold;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      margin-bottom: 0.8rem;
+    }
+
+    .label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #ffffff;
     }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease forwards;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #bb86fc;
-    }
-
-    .activity-button {
-      padding: 1rem 2rem;
-      background-color: #bb86fc;
-      color: #fff;
-      border: none;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-      animation: fadeIn 1s ease forwards;
-    }
-
-    .activity-button:hover {
-      background-color: #9f6be9;
-      transform: scale(1.05);
-    }
   </style>
 </head>
 <body>
 
-  <div class="fade-in">
-    <h1>Lutfirzt Tools</h1>
-    <button class="activity-button" onclick="goToActivity()">Buka Lutfirzt Activity</button>
+  <div class="container">
+    <h1><span style="color:#bb86fc;">Lutfirzt</span> Tools</h1>
+    <div class="grid">
+      <!-- Card: Lutfirzt Activity -->
+      <div class="card" onclick="goToActivity()">
+        <div class="badge">1</div>
+        <div class="label">Lutfirzt Activity</div>
+      </div>
+    </div>
   </div>
 
   <script>
