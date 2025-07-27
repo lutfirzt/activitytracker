@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lutfirzt Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .login-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-form {
+      background: #1f1f2f;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      width: 320px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .login-form h2 {
+      margin-bottom: 1.5rem;
+      color: #bb86fc;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      background: #2a2a3d;
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .login-form input::placeholder {
+      color: #aaa;
+    }
+
+    .login-form input:focus {
+      outline: none;
+      box-shadow: 0 0 10px #bb86fc;
+    }
+
+    .login-form button {
+      width: 100%;
+      padding: 0.9rem;
+      background: #bb86fc;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .login-form button:hover {
+      background: #9f6be9;
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-box">
+  <div class="login-form fade-in">
+    <h2>Masukkan Kode Akses</h2>
+    <input type="password" id="accessCode" placeholder="Kode Akses">
+    <button onclick="checkAccess()">Masuk</button>
+  </div>
+</div>
+
+<script>
+  const correctCode = "0000";
+
+  function checkAccess() {
+    const inputCode = document.getElementById("accessCode").value;
+    if (inputCode === correctCode) {
+      window.location.href = "home.html"; // Halaman tujuan setelah login
+    } else {
+      alert("Kode salah!");
+    }
+  }
+</script>
+
+</body>
+</html>
