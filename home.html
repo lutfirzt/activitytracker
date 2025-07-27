@@ -27,7 +27,6 @@
       width: 100%;
     }
 
-    /* Hero section stays fixed */
     .hero {
       position: fixed;
       top: 0;
@@ -35,21 +34,42 @@
       right: 0;
       height: 100vh;
       background: linear-gradient(135deg, #a66cff, #8e44ec);
-      display: flex;
-      justify-content: center;
-      align-items: center;
       z-index: 1;
+    }
+
+    .hero-inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .hero h1 {
       font-size: 2.5rem;
-      color: white;
       font-weight: 600;
+      color: white;
       margin: 0;
       animation: fadeIn 1s ease forwards;
     }
 
-    /* Scrollable section */
+    .greeting-fixed {
+      position: absolute;
+      top: var(--greeting-top, 5rem);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.25rem;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .greeting-fixed.show {
+      opacity: 1;
+    }
+
     .content-scroll {
       position: absolute;
       top: 0;
@@ -62,35 +82,47 @@
     }
 
     .content {
-      padding: 4rem 1.5rem;
       background-color: #121212;
       border-top-left-radius: 40px;
       border-top-right-radius: 40px;
-      min-height: 100vh;
       position: relative;
       z-index: 2;
+      padding: 2rem 1.5rem;
+      margin-top: -30vh;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .divider {
       width: 60px;
       height: 3px;
-      background-color: white;
-      margin: 1.5rem auto;
-      opacity: 0.5;
+      background-color: #ccc;
+      margin: 1rem 0 1.5rem;
+      border-radius: 2px;
+    }
+
+    .card-list {
+      max-height: 60vh;
+      overflow-y: auto;
+      width: 100%;
+      padding-right: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
     }
 
     .card {
       background-color: #1a0034;
       border-radius: 16px;
-      padding: 1rem 1.5rem;
-      display: inline-flex;
+      padding: 1rem 1.2rem;
+      display: flex;
       align-items: center;
       gap: 1rem;
       cursor: pointer;
       transition: transform 0.2s ease, opacity 0.3s ease;
-      max-width: 300px;
-      margin: 2rem auto;
-      box-shadow: 0 0 10px rgba(187, 134, 252, 0.2);
+      box-shadow: 0 4px 10px rgba(187, 134, 252, 0.2);
       opacity: 0;
       transform: translateY(20px);
     }
@@ -113,11 +145,14 @@
       justify-content: center;
       align-items: center;
       font-weight: bold;
+      color: white;
+      flex-shrink: 0;
     }
 
     .card-title {
       font-size: 1rem;
       font-weight: 600;
+      color: white;
     }
 
     .card-title span {
@@ -128,29 +163,46 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    .card-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .card-list::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
-
   <div class="wrapper">
     <!-- Fixed Hero -->
     <section class="hero">
-      <h1>Lutfirzt Tools</h1>
+      <div class="hero-inner">
+        <h1>Lutfirzt Tools</h1>
+      </div>
+      <div id="greeting" class="greeting-fixed">Hello Lutfirzt!</div>
     </section>
 
-    <!-- Scrollable Content -->
+    <!-- Scrollable Section -->
     <div class="content-scroll">
       <section class="content">
         <div class="divider"></div>
+        <div class="card-list">
+          <div class="card" onclick="goToActivity()">
+            <div class="badge">1</div>
+            <div class="card-title"><span>Lutfirzt</span> <strong>Activity</strong></div>
+          </div>
 
-        <div class="card" onclick="goToActivity()">
-          <div class="badge">1</div>
-          <div class="card-title"><span>Lutfirzt</span> <strong>Activity</strong></div>
-        </div>
-
-        <div class="card" onclick="alert('Fitur coming soon')">
-          <div class="badge">2</div>
-          <div class="card-title"><span>Lutfirzt</span> <strong>Ideas</strong></div>
+          <div class="card" onclick="alert('Fitur coming soon')">
+            <div class="badge">2</div>
+            <div class="card-title"><span>Lutfirzt</span> <strong>Ideas</strong></div>
+          </div>
         </div>
       </section>
     </div>
@@ -161,7 +213,6 @@
       window.location.href = "activity.html";
     }
 
-    // Scroll Reveal Animation
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -169,12 +220,23 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.15 });
 
     document.querySelectorAll('.card').forEach(card => {
       observer.observe(card);
     });
-  </script>
 
+    // Show greeting on scroll threshold
+    const contentScroll = document.querySelector('.content-scroll');
+    const greeting = document.getElementById('greeting');
+
+    contentScroll.addEventListener('scroll', () => {
+      if (contentScroll.scrollTop > 40) {
+        greeting.classList.add('show');
+      } else {
+        greeting.classList.remove('show');
+      }
+    });
+  </script>
 </body>
 </html>
